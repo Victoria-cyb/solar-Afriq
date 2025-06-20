@@ -3,7 +3,7 @@
       import jwt from 'jsonwebtoken';
       import crypto from 'crypto';
       import User from '../../models/User.js';
-      import Installer from '../../models/Installer.js';
+      import Installer from '../../models/installer.js';
       import { config } from '../../config/config.js';
       import { logger } from '../../utils/logger.js';
       import { sendVerificationEmail } from '../../services/emailService.js';
