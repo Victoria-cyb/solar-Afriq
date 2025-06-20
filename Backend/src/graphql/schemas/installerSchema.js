@@ -6,11 +6,12 @@ export const installerTypeDefs = gql`
     id: ID!
     userId: ID!
     skills: [String!]!
+    phoneNumber: String
     address: String!
     rating: Float!
   }
 
   type Query {
-    findNearbyInstallers(name: String, email: String!, address: String!, maxDistance: Float, guestId: String): [Installer]
+    findNearbyInstallers(name: String, email: String!, phoneNumber: String address: String!, maxDistance: Float, guestId: String): [Installer]
   }
 `;

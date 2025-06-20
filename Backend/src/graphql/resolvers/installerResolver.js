@@ -6,11 +6,12 @@ import { nanoid } from 'nanoid';
 
 export const installerResolvers = {
   Query: {
-    findNearbyInstallers: async (_, { name, email, address, maxDistance, guestId }, { user }) => {
+    findNearbyInstallers: async (_, { name, email, address, phoneNumber, maxDistance, guestId }, { user }) => {
       try {
         let finalGuestId = guestId;
         let finalName = name;
         let finalEmail = email;
+        let finalPhoneNumber = phoneNumber;
         let finalAddress = address;
 
         // Registered user: Fetch details
@@ -22,6 +23,7 @@ export const installerResolvers = {
           finalName = dbUser.name || name;
           finalEmail = dbUser.email;
           finalAddress = dbUser.address;
+          finalPhoneNumber = dbUser.phoneNumber || phoneNumber;
           finalGuestId = null;
         } else if (!guestId) {
           // New guest: Require name, email, address

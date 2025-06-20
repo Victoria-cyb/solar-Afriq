@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const installerSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   skills: [{ type: String, required: true }],
+  phoneNumber: { type: String, unique: true, sparse: true },
   address: { type: String, required: true },
   rating: { type: Number, default: 0 },
 });
