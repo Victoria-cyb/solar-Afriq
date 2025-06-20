@@ -17,7 +17,7 @@
           },
         },
         Mutation: {
-          signup: async (_, { email, password, name, role, address }) => {
+          signup: async (_, { email, password, name, role, phoneNumber, address }) => {
             try {
               const existingUser = await User.findOne({ email });
               if (existingUser) {
@@ -35,6 +35,7 @@
                 email,
                 password: hashedPassword,
                 name,
+                phoneNumber,
                 role: role || 'user',
                 address,
                 otp,

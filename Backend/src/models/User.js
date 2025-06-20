@@ -3,9 +3,10 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
 password: { type: String },
+phoneNumber: { type: String, unique: true, sparse: true },
 name: { type: String },
 role: { type: String,
-  enum: ['user', 'installer', 'admin'], default: 'user' },
+enum: ['user', 'installer', 'admin'], default: 'user' },
 address: { type: String },
 googleId: { type: String, unique: true, sparse: true },
 isEmailVerified: { type: Boolean, default: false },

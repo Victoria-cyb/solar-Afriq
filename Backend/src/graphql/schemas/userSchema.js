@@ -4,6 +4,7 @@ export const userTypeDefs = gql`
   type User {
     id: ID!
     email: String!
+    phoneNumber: String
     name: String
     role: String!
     address: String
@@ -24,7 +25,7 @@ export const userTypeDefs = gql`
   }
 
   type Mutation {
-    signup(email: String!, password: String!, name: String, role: String, address: String): SignupPayload
+    signup(email: String!, password: String!, name: String, phoneNumber: String, role: String, address: String): SignupPayload
     login(email: String!, password: String!): AuthPayload
     googleSignup(code: String!): SignupPayload
     sendVerificationEmail(email: String!): Boolean
