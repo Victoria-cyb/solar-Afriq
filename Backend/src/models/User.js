@@ -12,6 +12,8 @@ googleId: { type: String, unique: true, sparse: true },
 isEmailVerified: { type: Boolean, default: false },
 otp: { type: String },
 otpExpires: { type: Date },
+otpResendCount: { type: Number, default: 0 },
+lastOtpResend: { type: Date },
 });
 
 export default mongoose.model('User', userSchema);

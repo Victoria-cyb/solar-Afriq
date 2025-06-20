@@ -17,8 +17,8 @@ export const userTypeDefs = gql`
   }
 
   type SignupPayload {
-  message: String!
-}
+    message: String!
+  }
 
   type Query {
     me: User
@@ -28,7 +28,7 @@ export const userTypeDefs = gql`
     signup(email: String!, password: String!, name: String, phoneNumber: String, role: String, address: String): SignupPayload
     login(email: String!, password: String!): AuthPayload
     googleSignup(code: String!): SignupPayload
-    sendVerificationEmail(email: String!): Boolean
+    sendVerificationEmail(email: String!): SignupPayload!
     verifyEmail(email: String!, otp: String!): AuthPayload
     becomeInstaller(skills: [String!]!, address: String!): User
   }

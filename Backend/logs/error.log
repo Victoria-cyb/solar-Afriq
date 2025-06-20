@@ -84,3 +84,4 @@
 {"error":"Email already in use","level":"error","message":"Signup error:","timestamp":"2025-06-20T11:16:08.721Z"}
 {"error":"Email already in use","level":"error","message":"Signup error:","timestamp":"2025-06-20T11:16:10.881Z"}
 {"error":"Invalid or expired OTP","level":"error","message":"Verify email error:","timestamp":"2025-06-20T11:17:39.071Z"}
+{"error":"querySrv ESERVFAIL _mongodb._tcp.cluster0.yzxv3gr.mongodb.net","level":"error","message":"MongoDB connection error:","timestamp":"2025-06-20T16:07:13.265Z"}
