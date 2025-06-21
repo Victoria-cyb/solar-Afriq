@@ -32,7 +32,7 @@ console.log('JWT_SECRET:', process.env.JWT_SECRET ? '✅ Set' : '❌ Not set');
 console.log('.env file path:', envPath);
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:5500' }));
+app.use(cors());
 app.use(express.json());
 
 app.use('/api', router);
