@@ -1,3 +1,4 @@
+
 import { gql } from 'apollo-server-express';
 
 export const userTypeDefs = gql`
@@ -31,5 +32,6 @@ export const userTypeDefs = gql`
     sendVerificationEmail(email: String!): SignupPayload!
     verifyEmail(email: String!, otp: String!): AuthPayload
     becomeInstaller(skills: [String!]!, address: String!): User
+    resendOTP(email: String!): SignupPayload!  # New mutation for resending OTP
   }
 `;

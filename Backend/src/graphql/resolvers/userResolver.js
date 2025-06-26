@@ -191,5 +191,38 @@ export const userResolvers = {
       logger.info(`User became installer: ${user.email}`);
       return updatedUser;
     },
+    resendOTP: async (_, { email }) => {
+      try {
+        const user = await User.findOne({ email });
+        if (!user) {
+          logger.warn(`User not found for email: ${email}`);
+          throw new Error('User not found');
+        }
+        if (user.isEmailVerified) {
+          logger.info(`Email already verified: ${email}`);
+          throw new Error('Email already verified');
+        }
+        const now = new Date();
+        if (user.lastOtpResend && now - user.lastOtpResend < 5 * 60 * 1000 && user.otpResendCount >= 3) {
+          logger.warn(`OTP resend limit reached for email: ${email}`);
+          throw new Error('Too many OTP resend attempts. Please try again later.');
+        }
+        const otp = crypto.randomInt(100000, 999999).toString();
+        const otpExpires = new Date(now.getTime() + 5 * 60 * 1000);
+        const updateData = {
+          otp,
+          otpExpires,
+          otpResendCount: user.lastOtpResend && now - user.lastOtpResend < 5 * 60 * 1000 ? user.otpResendCount + 1 : 1,
+          lastOtpResend: now,
+        };
+        await User.findByIdAndUpdate(user._id, updateData);
+        await sendVerificationEmail(email, otp);
+        logger.info(`OTP resent: ${email}`);
+        return { message: 'OTP resent to your email' };
+      } catch (error) {
+        logger.error('Resend OTP error:', { error: error.message });
+        throw new Error(`Failed to resend OTP: ${error.message}`);
+      }
+    },
   },
 };
